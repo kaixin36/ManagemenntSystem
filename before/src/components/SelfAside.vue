@@ -2,9 +2,7 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    @open="handleOpen"
-    @close="handleClose"
-    style="width: 200px;height:90vh"
+    style="width: 200px;height: 90vh"
   >
     <el-sub-menu index="1">
       <template #title>
@@ -31,13 +29,24 @@
   </el-menu>
 </template>
 
-<script>
+<script  >
+import {
+  Location,
+  Document,
+  Menu as IconMenu,
+  Setting,
+} from "@element-plus/icons-vue";
+
 export default {
-  name: "aside",
-  components: {},
+  name: "SelfAside",
+  components: {
+    Location,
+    Document,
+    IconMenu,
+    Setting,
+  },
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* .tac_aside {

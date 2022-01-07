@@ -22,14 +22,17 @@
 </template>
 
 <script>
+import { ArrowDown } from "@element-plus/icons-vue";
 export default {
   name: "Header",
-  props: {
-    msg: String,
-  },
+  components: {
+    ArrowDown,
+  }
 };
 </script>
+<script lang="ts" setup>
 
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {

@@ -5,7 +5,7 @@
     <!-- 主体 -->
     <div class="body">
       <!-- 侧边栏 -->
-      <Aside class="body_aside" />
+      <SelfAside class="body_aside" />
       <!-- 内容区域 -->
       <router-view />
     </div>
@@ -14,13 +14,13 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import Aside from "@/components/Aside.vue";
+import SelfAside from "@/components/SelfAside.vue";
 
 export default {
   name: "Layout",
   components: {
     Header,
-    Aside,
+    SelfAside,
   },
 };
 </script>

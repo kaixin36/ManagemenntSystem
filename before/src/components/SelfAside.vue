@@ -2,7 +2,7 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    style="width: 200px;height: 90vh"
+    style="width: 200px;height: calc(100vh - 50px);"
   >
     <el-sub-menu index="1">
       <template #title>

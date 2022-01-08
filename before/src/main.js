@@ -10,4 +10,4 @@ import 'element-plus/dist/index.css'
 
 import '@/assets/css/global.css'
 
-createApp(App).use(store).use(router).use(ElementPlus, { locale: zhCn }).mount('#app')
+createApp(App).use(store).use(router).use(ElementPlus, { locale: zhCn,size:'small' }).mount('#app')

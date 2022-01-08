@@ -19,14 +19,16 @@
       <el-table-column prop="date" label="日期" />
       <el-table-column prop="name" label="姓名" />
       <el-table-column prop="address" label="地址" />
-      <el-table-column fixed="right" label="" width="120">
+      <el-table-column fixed="right" label="操作">
         <template #default>
-          <el-button type="text" size="small" @click="handleEdit"
-            >编辑</el-button
-          >
-          <el-button type="text" size="small" @click="handleDelete"
-            >删除</el-button
-          >
+          <el-button size="small" @click="handleEdit">编辑</el-button>
+          <el-popconfirm title="Are you sure to delete this?">
+            <template #reference>
+              <el-button type="danger" size="small" @click="handleDelete"
+                >删除</el-button
+              >
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>

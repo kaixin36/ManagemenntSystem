@@ -5,7 +5,7 @@
     <!-- 主体 -->
     <div class="body">
       <!-- 侧边栏 -->
-      <SelfAside class="body_aside" />
+      <SelfAside class="" style="width:230px"/>
       <!-- 内容区域 -->
       <router-view />
     </div>
@@ -28,8 +28,5 @@ export default {
 <style scoped>
 .body {
   display: flex;
-}
-.body_aside {
-  width: auto;
 }
 </style>

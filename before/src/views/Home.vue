@@ -13,7 +13,9 @@
         placeholder="请输入关键字"
         style="width: 20%"
       />
-      <el-button type="primary" style="margin-left: 5px">查询</el-button>
+      <el-button type="primary" style="margin-left: 5px" @click="findPage"
+        >查询</el-button
+      >
     </div>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column prop="id" label="id" />
@@ -24,8 +26,10 @@
       <el-table-column prop="sex" label="性别" />
       <el-table-column prop="address" label="地址" />
       <el-table-column fixed="right" label="操作">
-        <template #default>
-          <el-button size="small" @click="handleEdit">编辑</el-button>
+        <template #default="scope">
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+            >编辑</el-button
+          >
           <el-popconfirm title="Are you sure to delete this?">
             <template #reference>
               <el-button type="danger" size="small" @click="handleDelete"
@@ -98,6 +102,7 @@ export default {
     return {
       //新增
       form: {
+        id: 0,
         username: 6,
         nickname: 6,
         age: 6,
@@ -121,9 +126,11 @@ export default {
     findPage() {
       request
         .get("/user/findPage", {
-          pageNum: this.currentPage,
-          pageSize: this.pageSize,
-          search: this.search,
+          params: {
+            pageNum: this.currentPage,
+            pageSize: this.pageSize,
+            search: this.search,
+          },
         })
         .then((res) => {
           this.tableData = res.data.records;
@@ -136,17 +143,37 @@ export default {
       this.form = {};
     },
     save() {
-      request.post("/user/save", this.form).then((res) => {
-        this.findPage();
-      });
+      let url;
+      if (this.form.id) {
+        url = "/user/update";
+        request.put(url, this.form).then((res) => {
+          this.findPage();
+          this.dialogVisible = false;
+        });
+      } else {
+        url = "/user/save";
+        request.post(url, this.form).then((res) => {
+          this.findPage();
+          this.dialogVisible = false;
+        });
+      }
     },
     // 编辑
-    handleEdit() {},
+    handleEdit(index, row) {
+      this.form = JSON.parse(JSON.stringify(row));
+      this.dialogVisible = true;
+    },
     // 删除
-    handleDelete() {},
+    handleDelete() {
+      
+    },
 
-    handleSizeChange() {},
-    handleCurrentChange() {},
+    handleSizeChange() {
+      this.findPage()
+    },
+    handleCurrentChange() {
+      this.findPage()
+    },
   },
 };
 </script>

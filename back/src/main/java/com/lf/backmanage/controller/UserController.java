@@ -27,6 +27,17 @@ public class UserController {
         return Result.success();
     }
 
+    @PutMapping("/update")
+    public Result<?> update(@RequestBody User user)
+    {
+        if(user.getPassword()==null)
+        {
+            user.setPassword("123456");
+        }
+        userMapper.updateById(user);
+        return Result.success();
+    }
+
     @GetMapping("/findPage")
     public Result<?> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                            @RequestParam(defaultValue = "10") Integer pageSize,

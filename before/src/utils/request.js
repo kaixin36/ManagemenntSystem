@@ -14,11 +14,11 @@ const whiteUrls = ["/user/login", '/user/register']
 // 比如统一加token，对请求参数统一加密
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
-
+    return config;
     // 取出sessionStorage里面缓存的用户信息
     let userJson = sessionStorage.getItem("user")
     if (!whiteUrls.includes(config.url)) {  // 校验请求白名单
-        if(!userJson) {
+        if (!userJson) {
             router.push("/login")
         } else {
             let user = JSON.parse(userJson);

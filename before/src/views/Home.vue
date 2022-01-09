@@ -40,7 +40,7 @@
       <el-pagination
         v-model:currentPage="currentPage"
         :page-sizes="[5, 10, 20]"
-        :page-size="10"
+        :page-size="currentPage"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
         @size-change="handleSizeChange"
@@ -64,25 +64,24 @@
           <el-form-item label="年龄">
             <el-input v-model="form.age" style="width: 80%"></el-input>
           </el-form-item>
-          <el-form-item label="年龄">
-            <el-radio-group v-model="form.age">
+          <el-form-item label="性别">
+            <el-radio-group v-model="form.sex">
               <el-radio label="1">男</el-radio>
               <el-radio label="2">女</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="性别">
-            <el-input v-model="form.sex" style="width: 80%"></el-input>
-          </el-form-item>
           <el-form-item label="地址">
-            <el-input type="textarea" v-model="form.address" style="width: 80%"></el-input>
+            <el-input
+              type="textarea"
+              v-model="form.address"
+              style="width: 80%"
+            ></el-input>
           </el-form-item>
         </el-form>
         <template #footer>
           <span class="dialog-footer">
             <el-button @click="dialogVisible = false">取消</el-button>
-            <el-button type="primary" @click="save"
-              >确定</el-button
-            >
+            <el-button type="primary" @click="save">确定</el-button>
           </span>
         </template>
       </el-dialog>
@@ -91,7 +90,6 @@
 </template>
 
 <script>
-
 import request from "@/utils/request.js";
 
 export default {
@@ -109,21 +107,37 @@ export default {
 
       search: "",
       currentPage: 1,
-      total: 10,
+      pageSize: 10,
+      total: 0,
       tableData: [],
       // 新增对话框
       dialogVisible: false,
     };
   },
+  created() {
+    this.findPage();
+  },
   methods: {
+    findPage() {
+      request
+        .get("/user/findPage", {
+          pageNum: this.currentPage,
+          pageSize: this.pageSize,
+          search: this.search,
+        })
+        .then((res) => {
+          this.tableData = res.data.records;
+          this.total = res.data.total;
+        });
+    },
     // 新增
     add() {
       this.dialogVisible = true;
-      this.form={};
+      this.form = {};
     },
     save() {
-      request.post("/user/save",this.form).then(res=>{
-        console.log("dd");
+      request.post("/user/save", this.form).then((res) => {
+        this.findPage();
       });
     },
     // 编辑
@@ -135,8 +149,6 @@ export default {
     handleCurrentChange() {},
   },
 };
-
-
 </script>
 
 <style scoped>

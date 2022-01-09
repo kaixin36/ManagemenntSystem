@@ -2,7 +2,7 @@
   <div style="width: 100%" class="main_area">
     <!-- 功能区 -->
     <div class="function_area">
-      <el-button type="primary">新增</el-button>
+      <el-button type="primary" @click="add">新增</el-button>
       <el-button type="primary">导入</el-button>
       <el-button type="primary">导出</el-button>
     </div>
@@ -16,8 +16,12 @@
       <el-button type="primary" style="margin-left: 5px">查询</el-button>
     </div>
     <el-table :data="tableData" stripe border style="width: 100%">
-      <el-table-column prop="date" label="日期" />
-      <el-table-column prop="name" label="姓名" />
+      <el-table-column prop="id" label="id" />
+      <el-table-column prop="username" label="用户名" />
+      <el-table-column prop="password" label="密码" />
+      <el-table-column prop="nickname" label="昵称" />
+      <el-table-column prop="age" label="年龄" />
+      <el-table-column prop="sex" label="性别" />
       <el-table-column prop="address" label="地址" />
       <el-table-column fixed="right" label="操作">
         <template #default>
@@ -43,6 +47,45 @@
         @current-change="handleCurrentChange"
       >
       </el-pagination>
+
+      <el-dialog
+        v-model="dialogVisible"
+        title="新增用户"
+        width="30%"
+        :before-close="handleClose"
+      >
+        <el-form ref="formRef" :model="form" label-width="120px">
+          <el-form-item label="用户名">
+            <el-input v-model="form.username" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="昵称">
+            <el-input v-model="form.nickname" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="年龄">
+            <el-input v-model="form.age" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="年龄">
+            <el-radio-group v-model="form.age">
+              <el-radio label="1">男</el-radio>
+              <el-radio label="2">女</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="性别">
+            <el-input v-model="form.sex" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="地址">
+            <el-input type="textarea" v-model="form.address" style="width: 80%"></el-input>
+          </el-form-item>
+        </el-form>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="dialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="dialogVisible = false"
+              >确定</el-button
+            >
+          </span>
+        </template>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -54,36 +97,35 @@ export default {
   name: "Home",
   data() {
     return {
+      //新增
+      form: {
+        username: 6,
+        nickname: 6,
+        age: 6,
+        sex: 6,
+        address: 5,
+      },
+
       search: "",
       currentPage: 1,
       total: 10,
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-02",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-04",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-01",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-      ],
+      tableData: [],
+      // 新增对话框
+      dialogVisible: false,
     };
   },
   methods: {
+    // 新增
+    add() {
+      this.dialogVisible = true;
+      this.form={};
+    },
+    save() {},
+    // 编辑
     handleEdit() {},
+    // 删除
     handleDelete() {},
+
     handleSizeChange() {},
     handleCurrentChange() {},
   },

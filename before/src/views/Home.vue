@@ -80,7 +80,7 @@
         <template #footer>
           <span class="dialog-footer">
             <el-button @click="dialogVisible = false">取消</el-button>
-            <el-button type="primary" @click="dialogVisible = false"
+            <el-button type="primary" @click="save"
               >确定</el-button
             >
           </span>
@@ -91,7 +91,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
+import request from "@/utils/request.js";
 
 export default {
   name: "Home",
@@ -120,7 +121,11 @@ export default {
       this.dialogVisible = true;
       this.form={};
     },
-    save() {},
+    save() {
+      request.post("/user/save",this.form).then(res=>{
+        console.log("dd");
+      });
+    },
     // 编辑
     handleEdit() {},
     // 删除
@@ -130,6 +135,8 @@ export default {
     handleCurrentChange() {},
   },
 };
+
+
 </script>
 
 <style scoped>

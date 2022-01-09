@@ -19,6 +19,10 @@ public class UserController {
     @PostMapping("/save")
     public void Save(@RequestBody User user)
     {
+        if(user.getPassword()==null)
+        {
+            user.setPassword("123456");
+        }
         userMapper.insert(user);
     }
 }

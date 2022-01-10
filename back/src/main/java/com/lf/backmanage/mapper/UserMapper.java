@@ -1,7 +1,8 @@
 package com.lf.backmanage.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lf.backmanage.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.tomcat.jni.User;
 
-public interface UserMapper extends BaseMapper<User> {
+@Mapper
+public interface UserMapper extends baseMapper<User>{
 }

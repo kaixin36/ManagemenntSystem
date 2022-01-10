@@ -1,8 +1,6 @@
 package com.lf.backmanage.entity;
-import java.io.Serializable;
 
-public class User extends org.apache.tomcat.jni.User implements Serializable {
-
+public class UserCommand {
     private Integer id;
     private String username;
     private String password;
@@ -66,6 +64,4 @@ public class User extends org.apache.tomcat.jni.User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
 }

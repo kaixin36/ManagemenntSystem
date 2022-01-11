@@ -1,5 +1,7 @@
 package com.lf.backmanage.service;
 
+
+import com.github.pagehelper.Page;
 import com.lf.backmanage.entity.User;
 import com.lf.backmanage.entity.UserCommand;
 import com.lf.backmanage.mapper.UserMapper;
@@ -8,11 +10,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service("userService")
 public class UserServiceImpl implements UserService  {
     @Autowired
     private UserMapper userMapper;
+
+    @Override
+    public Page<User> findByPaging(Map param) {
+        return userMapper.findByPage(param);
+    }
 
     @Override
     public List<User> findAll() {
@@ -37,7 +45,7 @@ public class UserServiceImpl implements UserService  {
 
     @Override
     public void update(UserCommand userCommand) {
-        User updateUser = (User) userMapper.findOneById(userCommand.getId());
+        User updateUser = userMapper.findOneById(userCommand.getId());
         updateUser.setUsername(userCommand.getUsername());
         updateUser.setPassword(userCommand.getPassword());
         updateUser.setNickname(userCommand.getNickname());

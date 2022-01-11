@@ -1,7 +1,7 @@
 package com.lf.backmanage.entity;
 import java.io.Serializable;
 
-public class User extends org.apache.tomcat.jni.User implements Serializable {
+public class User  implements Serializable {
 
     private Integer id;
     private String username;

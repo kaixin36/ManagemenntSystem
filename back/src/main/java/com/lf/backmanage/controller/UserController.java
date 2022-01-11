@@ -44,7 +44,11 @@ public class UserController {
     public Result<?> findByPage(@RequestBody HashMap param){
         PageHelper.startPage((Integer) param.get("pageNum"), (Integer) param.get("pageSize"));
         Page<User> data = userService.findByPaging(param);
-        return Result.success(data);
+        HashMap resultData = new HashMap();
+        resultData.put("data",data);
+        resultData.put("pages",data.getPages());
+        resultData.put("total",data.getTotal());
+        return Result.success(resultData);
     }
 
 }

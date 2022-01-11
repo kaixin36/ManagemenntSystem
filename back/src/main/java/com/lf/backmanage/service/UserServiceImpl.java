@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService  {
 
     @Override
     public void update(UserCommand userCommand) {
-        User updateUser = (User) userMapper.findOneById(userCommand.getId());
+        User updateUser = userMapper.findOneById(userCommand.getId());
         updateUser.setUsername(userCommand.getUsername());
         updateUser.setPassword(userCommand.getPassword());
         updateUser.setNickname(userCommand.getNickname());

@@ -35,6 +35,15 @@
     <select id="findOneById" resultType="com.lf.backmanage.entity.User">
         select  * from user where id=#{id} limit 1
     </select>
+<!--    resultMap="BaseResultMap"-->
+<!--    分页查询-->
+    <select id="findByPage"  resultType="com.lf.backmanage.entity.User" parameterType="map">
+        select * from user
+        where 1=1
+        <if test="age != null">
+            and age = #{age}
+        </if>
+    </select>
 
     <select id="findAll" resultType="com.lf.backmanage.entity.User">
         select * from user

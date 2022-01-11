@@ -1,5 +1,8 @@
 package com.lf.backmanage.controller;
 
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lf.backmanage.common.Result;
 import com.lf.backmanage.entity.User;
 import com.lf.backmanage.entity.UserCommand;
@@ -7,7 +10,9 @@ import com.lf.backmanage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -34,4 +39,12 @@ public class UserController {
         userService.update(userCommand);
         return Result.success();
     }
+
+    @GetMapping("findByPage")
+    public Result<?> findByPage(@RequestBody HashMap param){
+        PageHelper.startPage((Integer) param.get("pageNum"), (Integer) param.get("pageSize"));
+        Page<User> data = userService.findByPaging(param);
+        return Result.success(data);
+    }
+
 }

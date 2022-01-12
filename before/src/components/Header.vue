@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header_left">后台管理</div>
+    <div class="header_left">权限管理子系统</div>
     <div class="header_middle"></div>
     <div class="header_right">
       <el-dropdown>

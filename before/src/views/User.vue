@@ -114,7 +114,7 @@ export default {
       search: "",
       currentPage: 1,
       pageSize: 10,
-      pageCount:10,
+      pageCount:0,
       total: 0,
       tableData: [],
       // 新增对话框

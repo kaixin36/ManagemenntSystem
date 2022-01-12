@@ -11,7 +11,7 @@
       </template>
       <el-menu-item-group title="">
         <el-menu-item index="1-1">用户管理</el-menu-item>
-        <el-menu-item index="1-2">item</el-menu-item>
+        <el-menu-item index="1-2">用户角色</el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
     <el-menu-item index="2">

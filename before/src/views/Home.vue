@@ -45,6 +45,7 @@
         v-model:currentPage="currentPage"
         :page-sizes="[5, 10, 20]"
         :page-size="currentPage"
+        :page-count="pageCount"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
         @size-change="handleSizeChange"
@@ -113,6 +114,7 @@ export default {
       search: "",
       currentPage: 1,
       pageSize: 10,
+      pageCount:10,
       total: 0,
       tableData: [],
       // 新增对话框
@@ -125,16 +127,20 @@ export default {
   methods: {
     findPage() {
       request
-        .get("/user/findPage", {
-          params: {
-            pageNum: this.currentPage,
-            pageSize: this.pageSize,
-            search: this.search,
-          },
+        .post("/user/findByPage", {
+          // params: {
+          //   pageNum: this.currentPage,
+          //   pageSize: this.pageSize,
+          //   search: this.search,
+          // },
+          pageNum: this.currentPage,
+          pageSize: this.pageSize,
+          search: this.search,
         })
         .then((res) => {
-          this.tableData = res.data.records;
+          this.tableData = res.data.data;
           this.total = res.data.total;
+          this.pageCount = res.data.pages
         });
     },
     // 新增
@@ -164,15 +170,13 @@ export default {
       this.dialogVisible = true;
     },
     // 删除
-    handleDelete() {
-      
-    },
+    handleDelete() {},
 
     handleSizeChange() {
-      this.findPage()
+      this.findPage();
     },
     handleCurrentChange() {
-      this.findPage()
+      this.findPage();
     },
   },
 };

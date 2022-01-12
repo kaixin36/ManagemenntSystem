@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lf.backmanage.mapper.UserRoleMapper">
+
+    <!--插入-->
+    <insert id="insert" parameterType="com.lf.backmanage.entity.UserRole" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into userrole(
+                              name,
+                              status,
+                              remark
+        )
+        value (
+            #{name},
+            #{status},
+            #{remark}
+        )
+
+
+    </insert>
+    <update id="update" parameterType="com.lf.backmanage.entity.UserRole">
+        update userrole set name=#{name},
+                          status=#{status},
+                          remark=#{remark}
+                     where id=#{id}
+    </update>
+    <!--    分页查询-->
+    <select id="findByPage"  resultType="com.lf.backmanage.entity.UserRole" parameterType="map">
+        select * from userrole
+        where 1=1
+        <if test="age != null">
+            and age = #{age}
+        </if>
+    </select>
+    <select id="findOneById" resultType="com.lf.backmanage.entity.UserRole">
+        select  * from userrole where id=#{id} limit 1
+    </select>
+    <select id="findAll" resultType="com.lf.backmanage.entity.UserRole">
+        select * from userrole
+    </select>
+</mapper>

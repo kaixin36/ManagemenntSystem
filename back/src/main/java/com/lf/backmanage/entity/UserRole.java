@@ -1,10 +1,13 @@
 package com.lf.backmanage.entity;
 
-public class UserRolerCommand {
+import java.io.Serializable;
+
+public class UserRole  implements Serializable {
     private Integer id;
     private String name;
-    private String status;
+    private Integer status;
     private String remark;
+
     public Integer getId() {
         return id;
     }
@@ -21,11 +24,11 @@ public class UserRolerCommand {
         this.name = name;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

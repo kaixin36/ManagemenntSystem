@@ -1,12 +1,11 @@
 package com.lf.backmanage.entity;
 
-import java.io.Serializable;
-
-public class UserRoler extends org.apache.tomcat.jni.User implements Serializable {
+public class UserRoleCommand {
     private Integer id;
     private String name;
-    private String status;
+    private Integer status;
     private String remark;
+
     public Integer getId() {
         return id;
     }
@@ -23,11 +22,11 @@ public class UserRoler extends org.apache.tomcat.jni.User implements Serializabl
         this.name = name;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -39,3 +38,4 @@ public class UserRoler extends org.apache.tomcat.jni.User implements Serializabl
         this.remark = remark;
     }
 }
+

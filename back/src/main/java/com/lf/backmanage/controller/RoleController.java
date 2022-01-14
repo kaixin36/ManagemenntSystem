@@ -17,29 +17,29 @@ import java.util.List;
 public class RoleController {
 
     @Autowired
-    private RoleService userRoleService;
+    private RoleService roleService;
 
     @RequestMapping("/findAll")
     public List<Role> findAll() {
-        return userRoleService.findAll();
+        return roleService.findAll();
     }
 
     @PostMapping("/save")
     public Result<?> Save(@RequestBody RoleCommand userRolerCommand) {
-        userRoleService.add(userRolerCommand);
+        roleService.add(userRolerCommand);
         return Result.success();
     }
 
     @PutMapping("/update")
     public Result<?> Update(@RequestBody RoleCommand roleCommand) {
-        userRoleService.update(roleCommand);
+        roleService.update(roleCommand);
         return Result.success();
     }
 
     @GetMapping("findByPage")
     public Result<?> findByPage(@RequestBody HashMap param){
         PageHelper.startPage((Integer) param.get("pageNum"), (Integer) param.get("pageSize"));
-        Page<Role> data = userRoleService.findByPaging(param);
+        Page<Role> data = roleService.findByPaging(param);
         HashMap resultData = new HashMap();
         resultData.put("data",data);
         resultData.put("pages",data.getPages());

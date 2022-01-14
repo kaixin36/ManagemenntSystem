@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("/userRolerService")
+@Service("/RolerService")
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
@@ -26,21 +26,21 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void add(RoleCommand roleCommand) {
-        Role userRole = new Role();
-        userRole.setId(roleCommand.getId());
-        userRole.setName(roleCommand.getName());
-        userRole.setStatus(roleCommand.getStatus());
-        userRole.setRemark(roleCommand.getRemark());
-        roleMapper.insert(userRole);
+        Role role = new Role();
+        role.setId(roleCommand.getId());
+        role.setName(roleCommand.getName());
+        role.setStatus(roleCommand.getStatus());
+        role.setRemark(roleCommand.getRemark());
+        roleMapper.insert(role);
     }
 
     @Override
     public void update(RoleCommand roleCommand) {
-        Role updateUserRole= roleMapper.findOneById(roleCommand.getId());
-        updateUserRole.setName(roleCommand.getName());
-        updateUserRole.setStatus(roleCommand.getStatus());
-        updateUserRole.setRemark(roleCommand.getRemark());
-        roleMapper.update(updateUserRole);
+        Role updateRole= roleMapper.findOneById(roleCommand.getId());
+        updateRole.setName(roleCommand.getName());
+        updateRole.setStatus(roleCommand.getStatus());
+        updateRole.setRemark(roleCommand.getRemark());
+        roleMapper.update(updateRole);
 
     }
 

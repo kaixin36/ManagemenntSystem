@@ -6,6 +6,7 @@ import com.lf.backmanage.common.Result;
 import com.lf.backmanage.entity.UserRole;
 import com.lf.backmanage.entity.UserRoleCommand;
 import com.lf.backmanage.service.UserRoleService;
+import com.lf.backmanage.service.UserRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,6 @@ public class UserRoleController {
     @PostMapping("/save")
     public Result<?> Save(@RequestBody UserRoleCommand userRolerCommand) {
         userRoleService.add(userRolerCommand);
-
         return Result.success();
     }
 

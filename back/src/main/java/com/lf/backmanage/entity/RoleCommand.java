@@ -1,6 +1,6 @@
 package com.lf.backmanage.entity;
 
-public class UserRoleCommand {
+public class RoleCommand {
     private Integer id;
     private String name;
     private Integer status;

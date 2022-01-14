@@ -3,10 +3,9 @@ package com.lf.backmanage.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lf.backmanage.common.Result;
-import com.lf.backmanage.entity.UserRole;
-import com.lf.backmanage.entity.UserRoleCommand;
-import com.lf.backmanage.service.UserRoleService;
-import com.lf.backmanage.service.UserRoleServiceImpl;
+import com.lf.backmanage.entity.Role;
+import com.lf.backmanage.entity.RoleCommand;
+import com.lf.backmanage.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,33 +13,33 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userRole")
-public class UserRoleController {
+@RequestMapping("/Role")
+public class RoleController {
 
     @Autowired
-    private UserRoleService userRoleService;
+    private RoleService userRoleService;
 
     @RequestMapping("/findAll")
-    public List<UserRole> findAll() {
+    public List<Role> findAll() {
         return userRoleService.findAll();
     }
 
     @PostMapping("/save")
-    public Result<?> Save(@RequestBody UserRoleCommand userRolerCommand) {
+    public Result<?> Save(@RequestBody RoleCommand userRolerCommand) {
         userRoleService.add(userRolerCommand);
         return Result.success();
     }
 
     @PutMapping("/update")
-    public Result<?> Update(@RequestBody UserRoleCommand userRoleCommand) {
-        userRoleService.update(userRoleCommand);
+    public Result<?> Update(@RequestBody RoleCommand roleCommand) {
+        userRoleService.update(roleCommand);
         return Result.success();
     }
 
     @GetMapping("findByPage")
     public Result<?> findByPage(@RequestBody HashMap param){
         PageHelper.startPage((Integer) param.get("pageNum"), (Integer) param.get("pageSize"));
-        Page<UserRole> data = userRoleService.findByPaging(param);
+        Page<Role> data = userRoleService.findByPaging(param);
         HashMap resultData = new HashMap();
         resultData.put("data",data);
         resultData.put("pages",data.getPages());

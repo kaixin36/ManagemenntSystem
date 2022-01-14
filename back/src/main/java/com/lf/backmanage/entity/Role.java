@@ -2,7 +2,7 @@ package com.lf.backmanage.entity;
 
 import java.io.Serializable;
 
-public class UserRole  implements Serializable {
+public class Role implements Serializable {
     private Integer id;
     private String name;
     private Integer status;

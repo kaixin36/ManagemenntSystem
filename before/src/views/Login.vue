@@ -3,15 +3,19 @@
     <div class="login_area">
       <div class="title">欢迎登录</div>
       <div class="login_info">
-        <el-form ref="form" :model="form" >
+        <el-form ref="form" :model="form">
           <el-form-item>
             <el-input v-model="form.username" prefix-icon="User"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="form.password" show-password prefix-icon="Lock"></el-input>
+            <el-input
+              v-model="form.password"
+              show-password
+              prefix-icon="Lock"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary"  @click="onSubmit" style="width: 100%"
+            <el-button type="primary" @click="login" style="width: 100%"
               >登录</el-button
             >
           </el-form-item>
@@ -23,7 +27,7 @@
 
 <script>
 import request from "@/utils/request.js";
-
+import {router} from 'vue-router'
 
 export default {
   name: "Login",
@@ -35,14 +39,17 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    login() {
+      this.$router.push("/");
+      // request
+      //   .post("/login/login", this.form)
+      //   .then((res) => {
+     
+      //   });
+    },
+  },
 };
-import { ref } from 'vue'
-import { Calendar, Search } from '@element-plus/icons-vue'
-const input1 = ref('')
-const input2 = ref('')
-const input3 = ref('')
-const input4 = ref('')
 </script>
 
 <style scoped>

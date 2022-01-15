@@ -5,10 +5,10 @@
       <div class="login_info">
         <el-form ref="form" :model="form" >
           <el-form-item>
-            <el-input v-model="form.username"></el-input>
+            <el-input v-model="form.username" prefix-icon="User"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="form.password" show-password></el-input>
+            <el-input v-model="form.password" show-password prefix-icon="Lock"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary"  @click="onSubmit" style="width: 100%"
@@ -24,6 +24,7 @@
 <script>
 import request from "@/utils/request.js";
 
+
 export default {
   name: "Login",
   data() {
@@ -36,6 +37,12 @@ export default {
   created() {},
   methods: {},
 };
+import { ref } from 'vue'
+import { Calendar, Search } from '@element-plus/icons-vue'
+const input1 = ref('')
+const input2 = ref('')
+const input3 = ref('')
+const input4 = ref('')
 </script>
 
 <style scoped>

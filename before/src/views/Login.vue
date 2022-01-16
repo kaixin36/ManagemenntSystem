@@ -1,13 +1,13 @@
 <template>
   <div style="" class="main_area">
     <div class="login_area">
-      <div class="title">欢迎登录</div>
+      <div class="title">欢迎登录后台管理</div>
       <div class="login_info">
-        <el-form ref="form" :model="form">
-          <el-form-item>
+        <el-form ref="form" :model="form" :rules="rules">
+          <el-form-item prop="username">
             <el-input v-model="form.username" prefix-icon="User"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               v-model="form.password"
               show-password
@@ -27,26 +27,45 @@
 
 <script>
 import request from "@/utils/request.js";
-import {router} from 'vue-router'
+import { reactive } from "vue";
+
+const rules = reactive({
+  username: [
+    {
+      required: true,
+      message: "请输入用户名",
+      trigger: "blur",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "请输入密码",
+      trigger: "blur",
+    },
+  ],
+});
 
 export default {
   name: "Login",
   data() {
     return {
       form: {
-        name: 2,
+        username: "",
+        password: "",
       },
+      rules: rules,
     };
   },
   created() {},
   methods: {
     login() {
-      this.$router.push("/");
-      // request
-      //   .post("/login/login", this.form)
-      //   .then((res) => {
-     
-      //   });
+       this.$router.push("/");
+      if (this.$refs.form.validate((x) => x)) {
+        request.post("/login/login", this.form).then((res) => {
+          this.$router.push("/");
+        });
+      }
     },
   },
 };

@@ -7,7 +7,7 @@
   >
     <el-sub-menu index="1">
       <template #title>
-        <el-icon><location /></el-icon>
+        <el-icon><setting /></el-icon>
         <span>系统设置</span>
       </template>
       <el-menu-item-group title="">
@@ -16,8 +16,8 @@
       </el-menu-item-group>
     </el-sub-menu>
     <el-menu-item index="2">
-      <el-icon><icon-menu /></el-icon>
-      <span>菜单选项</span>
+      <el-icon><document /></el-icon>
+      <span>菜单项二</span>
     </el-menu-item>
   </el-menu>
 </template>

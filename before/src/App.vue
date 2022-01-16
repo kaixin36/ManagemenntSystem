@@ -1,26 +1,19 @@
 <template>
   <div>
-    <!-- 头部 -->
-    <Header />
-    <!-- 主体 -->
-    <div class="body">
-      <!-- 侧边栏 -->
-      <SelfAside class="" style="width:230px"/>
-      <!-- 内容区域 -->
-      <router-view />
-    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import SelfAside from "@/components/SelfAside.vue";
+
+import Login from "@/views/Login.vue";
+import Layout from "@/layout/Layout.vue";
 
 export default {
   name: "Layout",
   components: {
-    Header,
-    SelfAside,
+    Login,
+    Layout
   },
 };
 </script>

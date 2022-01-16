@@ -1,7 +1,14 @@
 <template>
   <div class="header">
-    <div class="header_left">后台管理</div>
+    <div class="header_left">后台管理系统</div>
     <div class="header_middle"></div>
+    <div class="header_user_head_image">
+      <el-avatar
+        :size="40"
+        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+      >
+      </el-avatar>
+    </div>
     <div class="header_right">
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -27,11 +34,10 @@ export default {
   name: "Header",
   components: {
     ArrowDown,
-  }
+  },
 };
 </script>
 <script lang="ts" setup>
-
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -52,5 +58,12 @@ export default {
 }
 .header_right {
   width: auto;
+  margin-right: 50px;
+}
+
+.header_user_head_image {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 </style>

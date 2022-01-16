@@ -3,8 +3,6 @@
     <!-- 功能区 -->
     <div class="function_area">
       <el-button type="primary" @click="add">新增</el-button>
-      <el-button type="primary">导入</el-button>
-      <el-button type="primary">导出</el-button>
     </div>
     <!-- 搜索区 -->
     <div class="search_area">
@@ -19,12 +17,9 @@
     </div>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column prop="id" label="id" />
-      <el-table-column prop="username" label="用户名" />
-      <el-table-column prop="password" label="密码" />
-      <el-table-column prop="nickname" label="昵称" />
-      <el-table-column prop="age" label="年龄" />
-      <el-table-column prop="sex" label="性别" />
-      <el-table-column prop="address" label="地址" />
+      <el-table-column prop="username" label="角色名称" />
+      <el-table-column prop="password" label="数据状态" />
+      <el-table-column prop="nickname" label="备注" />
       <el-table-column fixed="right" label="操作">
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
@@ -45,6 +40,7 @@
         v-model:currentPage="currentPage"
         :page-sizes="[5, 10, 20]"
         :page-size="currentPage"
+        :page-count="pageCount"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
         @size-change="handleSizeChange"
@@ -113,6 +109,7 @@ export default {
       search: "",
       currentPage: 1,
       pageSize: 10,
+      pageCount:0,
       total: 0,
       tableData: [],
       // 新增对话框
@@ -125,16 +122,20 @@ export default {
   methods: {
     findPage() {
       request
-        .get("/user/findPage", {
-          params: {
-            pageNum: this.currentPage,
-            pageSize: this.pageSize,
-            search: this.search,
-          },
+        .post("/user/findByPage1", {
+          // params: {
+          //   pageNum: this.currentPage,
+          //   pageSize: this.pageSize,
+          //   search: this.search,
+          // },
+          pageNum: this.currentPage,
+          pageSize: this.pageSize,
+          search: this.search,
         })
         .then((res) => {
-          this.tableData = res.data.records;
+          this.tableData = res.data.data;
           this.total = res.data.total;
+          this.pageCount = res.data.pages
         });
     },
     // 新增
@@ -164,15 +165,13 @@ export default {
       this.dialogVisible = true;
     },
     // 删除
-    handleDelete() {
-      
-    },
+    handleDelete() {},
 
     handleSizeChange() {
-      this.findPage()
+      this.findPage();
     },
     handleCurrentChange() {
-      this.findPage()
+      this.findPage();
     },
   },
 };

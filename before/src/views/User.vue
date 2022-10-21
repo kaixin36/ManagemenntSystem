@@ -2,26 +2,22 @@
   <div style="width: 100%" class="main_area">
     <!-- 搜索区 -->
     <div class="search_area">
-
-<el-form ref="formRef" :model="form" label-width="60px">
-    <el-form-item label="用户名">
-      <el-input v-model="form.name" style="width: 15%" ></el-input>
-        <el-button type="primary" icon="Search" style="margin-left: 5px" @click="findPage"
-        >查询</el-button
-      >  
-         
-    </el-form-item>
-   
-   
-  </el-form>
-
-
-
-     
+      <el-form ref="formRef" :model="form" label-width="60px">
+        <el-form-item label="用户名">
+          <el-input v-model="form.name" style="width: 15%"></el-input>
+          <el-button
+            type="primary"
+            icon="Search"
+            style="margin-left: 5px"
+            @click="findPage"
+            >查询</el-button
+          >
+        </el-form-item>
+      </el-form>
     </div>
-        <!-- 功能区 -->
+    <!-- 功能区 -->
     <div class="function_area">
-      <el-button type="primary" icon="Plus"  @click="add">新增</el-button>
+      <el-button type="primary" icon="Plus" @click="add">新增</el-button>
       <el-button type="primary" icon="">导入</el-button>
       <el-button type="primary">导出</el-button>
     </div>
@@ -122,7 +118,7 @@ export default {
       search: "",
       currentPage: 1,
       pageSize: 10,
-      pageCount:0,
+      pageCount: 0,
       total: 0,
       tableData: [],
       // 新增对话框
@@ -148,7 +144,7 @@ export default {
         .then((res) => {
           this.tableData = res.data.data;
           this.total = res.data.total;
-          this.pageCount = res.data.pages
+          this.pageCount = res.data.pages;
         });
     },
     // 新增

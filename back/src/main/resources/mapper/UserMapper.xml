@@ -38,11 +38,11 @@
 <!--    resultMap="BaseResultMap"-->
 <!--    分页查询-->
     <select id="findByPage"  resultType="com.lf.backmanage.entity.User" parameterType="map">
-        select * from user
+        select * from user  <if test="age != null">
+        and age = #{age}
+    </if>
         where 1=1
-        <if test="age != null">
-            and age = #{age}
-        </if>
+
     </select>
 
     <select id="findAll" resultType="com.lf.backmanage.entity.User">

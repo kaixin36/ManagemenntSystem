@@ -47,45 +47,25 @@
         @current-change="handleCurrentChange"
       >
       </el-pagination>
-
-      <el-dialog
-        v-model="dialogVisible"
-        title="新增用户"
-        width="30%"
-        :before-close="handleClose"
-      >
-        <el-form ref="formRef" :model="form" label-width="120px">
-          <el-form-item label="用户名">
-            <el-input v-model="form.username" style="width: 80%"></el-input>
-          </el-form-item>
-          <el-form-item label="昵称">
-            <el-input v-model="form.nickname" style="width: 80%"></el-input>
-          </el-form-item>
-          <el-form-item label="年龄">
-            <el-input v-model="form.age" style="width: 80%"></el-input>
-          </el-form-item>
-          <el-form-item label="性别">
-            <el-radio-group v-model="form.sex">
-              <el-radio label="1">男</el-radio>
-              <el-radio label="2">女</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="地址">
-            <el-input
-              type="textarea"
-              v-model="form.address"
-              style="width: 80%"
-            ></el-input>
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <span class="dialog-footer">
-            <el-button @click="dialogVisible = false">取消</el-button>
-            <el-button type="primary" @click="save">确定</el-button>
-          </span>
-        </template>
-      </el-dialog>
     </div>
+    <el-dialog
+      v-model="dialogVisible"
+      title="新增角色"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-form ref="formRef" :model="form" label-width="120px">
+        <el-form-item label="角色名称">
+          <el-input v-model="form.name" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="save">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -109,7 +89,7 @@ export default {
       search: "",
       currentPage: 1,
       pageSize: 10,
-      pageCount:0,
+      pageCount: 0,
       total: 0,
       tableData: [],
       // 新增对话框
@@ -135,7 +115,7 @@ export default {
         .then((res) => {
           this.tableData = res.data.data;
           this.total = res.data.total;
-          this.pageCount = res.data.pages
+          this.pageCount = res.data.pages;
         });
     },
     // 新增

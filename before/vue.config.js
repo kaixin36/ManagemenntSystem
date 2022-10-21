@@ -10,6 +10,12 @@ module.exports = {
                     '/api': ''                     //选择忽略拦截器里面的单词
                 }
             }
-        }
-    }
+        },
+        allowedHosts:["1r51o26071.zicp.fun"]
+
+    },
+    configureWebpack: {
+        devtool: 'source-map'
+      }
+     
 }

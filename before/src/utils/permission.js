@@ -3,7 +3,7 @@ import Layout from "@/layout/Layout";
 
 // 注意：这个文件是设置动态路由的
 // permissions是一个资源的数组
-export function activeRouter() {
+export default function activeRouter() {
     const userStr = sessionStorage.getItem("user")
     if (userStr) {
         const user = JSON.parse(userStr)
@@ -25,5 +25,8 @@ export function activeRouter() {
         if (router) {
             router.addRoute(root)
         }
+    }{
+        router.push("/login")
     }
 }
+

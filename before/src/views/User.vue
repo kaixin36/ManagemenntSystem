@@ -34,9 +34,11 @@
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
             >编辑</el-button
           >
-          <el-popconfirm title="Are you sure to delete this?">
+          <el-popconfirm 
+          title="Are you sure to delete this?"
+          @confirm='handleDelete(scope.row)'>
             <template #reference>
-              <el-button type="danger" size="small" @click="handleDelete"
+              <el-button type="danger" size="small" 
                 >删除</el-button
               >
             </template>
@@ -174,7 +176,12 @@ export default {
       this.dialogVisible = true;
     },
     // 删除
-    handleDelete() {},
+    handleDelete(row) {
+        request.post("/user/delete", row.id).then((res) => {
+          this.findPage();
+        });
+
+    },
 
     handleSizeChange() {
       this.findPage();

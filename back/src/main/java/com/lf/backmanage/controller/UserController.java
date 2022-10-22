@@ -37,6 +37,12 @@ public class UserController {
         return Result.success();
     }
 
+    @PostMapping("/delete")
+    public Result<?> delete(@RequestBody Integer id) {
+        userService.delete(id);
+        return Result.success();
+    }
+
     @PostMapping("findByPage")
     public Result<?> findByPage(@RequestBody HashMap param){
         PageHelper.startPage((Integer) param.get("pageNum"), (Integer) param.get("pageSize"));

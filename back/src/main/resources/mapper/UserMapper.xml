@@ -32,6 +32,11 @@
 
     </update>
 
+    <!--删除-->
+    <delete id="delete" parameterType="com.lf.backmanage.entity.User" >
+        delete from user where id=#{id}
+    </delete>
+
     <select id="findOneById" resultType="com.lf.backmanage.entity.User">
         select  * from user where id=#{id} limit 1
     </select>

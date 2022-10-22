@@ -17,4 +17,5 @@ public interface UserService  {
 
     public void update(UserCommand userCommand);
 
+    public void delete(Integer id);
 }

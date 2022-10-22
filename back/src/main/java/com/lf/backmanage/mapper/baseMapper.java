@@ -11,6 +11,8 @@ public interface baseMapper<T> {
 
     void update(T t);
 
+    void delete(int t);
+
     T findOneById(int id);
 
     Page<T> findByPage(Map param);

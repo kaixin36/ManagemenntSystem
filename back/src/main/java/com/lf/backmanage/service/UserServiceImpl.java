@@ -58,4 +58,9 @@ public class UserServiceImpl implements UserService  {
         }
         userMapper.update(updateUser);
     }
+
+    @Override
+    public void delete(Integer id) {
+       userMapper.delete(id);
+    }
 }

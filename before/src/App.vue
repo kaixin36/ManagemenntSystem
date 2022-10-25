@@ -8,13 +8,12 @@
 
 import Login from "@/views/Login.vue";
 import Layout from "@/layout/Layout.vue";
-import permission from "@/utils/permission.js";
-import router from "@/router";
+import {activeRouter} from "@/utils/permission.js";
 
 export default {
   name: "Layout",
   created:function() {
-    permission()
+    activeRouter()
   },
   components: {
     Login,

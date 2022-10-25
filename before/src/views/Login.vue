@@ -61,11 +61,16 @@ export default {
   methods: {
     login() {
        this.$router.push("/");
-      if (this.$refs.form.validate((x) => x)) {
-        request.post("/login/login", this.form).then((res) => {
+
+  //  if (this.$refs.form.validate((x) => x)) {
+  //       request.post("/user/login", this.form).then((res) => {
+  //         this.$router.push("/");
+  //       });
+  //     }
+  
+    request.post("/user/login", this.form).then((res) => {
           this.$router.push("/");
         });
-      }
     },
   },
 };

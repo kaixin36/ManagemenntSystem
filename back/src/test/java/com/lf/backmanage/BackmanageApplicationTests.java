@@ -10,7 +10,6 @@ class BackmanageApplicationTests {
     @Test
     void contextLoads() {
         RoleController roleController =new RoleController();
-
     }
 
 }

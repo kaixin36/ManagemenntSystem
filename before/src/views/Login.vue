@@ -60,7 +60,7 @@ export default {
   created() {},
   methods: {
     login() {
-       this.$router.push("/");
+       //this.$router.push("/");
 
   //  if (this.$refs.form.validate((x) => x)) {
   //       request.post("/user/login", this.form).then((res) => {

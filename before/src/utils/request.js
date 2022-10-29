@@ -14,8 +14,10 @@ const whiteUrls = ["/user/login", '/user/register']
 // 比如统一加token，对请求参数统一加密
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
-    // 取出sessionStorage里面缓存的用户信息
+    let token = sessionStorage.getItem("token");
+    config.headers['token'] = token;  // 设置请求头
     return config;
+      // 取出sessionStorage里面缓存的用户信息
     let userJson = sessionStorage.getItem("user")
     if (!whiteUrls.includes(config.url)) {  // 校验请求白名单
         if (!userJson) {
@@ -48,10 +50,15 @@ request.interceptors.response.use(
         //     console.error("token过期，重新登录")
         //     router.push("/login")
         // }
-        sessionStorage.setItem("token",res.data);
+
+        //从请求头中获取"token"
+        const token = response.headers["token"];
+
+        sessionStorage.setItem("token",token);
         return res;
     },
     error => {
+        router.push("/login")
         console.log('err' + error) // for debug
         return Promise.reject(error)
     }

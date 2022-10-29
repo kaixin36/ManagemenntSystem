@@ -7,8 +7,10 @@ export  function activeRouter() {
 
     const token = sessionStorage.getItem("token")
     const userStr = sessionStorage.getItem("user")
-    if ( token || userStr) {
-        // const user = JSON.parse(userStr)
+    if ( token ==null) {
+        router.push("/login")
+    }else{
+         // const user = JSON.parse(userStr)
         // let root = {
         //     path: '/',
         //     name: 'Layout',
@@ -27,8 +29,6 @@ export  function activeRouter() {
         // if (router) {
         //     router.addRoute(root)
         // }
-    }else{
-        router.push("/login")
     }
 }
 

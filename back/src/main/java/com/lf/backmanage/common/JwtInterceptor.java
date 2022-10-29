@@ -1,6 +1,7 @@
 package com.lf.backmanage.common;
 
 import com.lf.backmanage.common.util.JwtUtil;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+@Component
 public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -27,14 +29,17 @@ public class JwtInterceptor implements HandlerInterceptor {
         //验证 token
         JwtUtil.checkSign(token);
 
+        //重新写入token
+        response.setHeader("token",token);
+        return true;
         //验证通过后， 这里测试取出JWT中存放的数据
         //获取 token 中的 userId
-        String userId = JwtUtil.getUserId(token);
-        System.out.println("id : " + userId);
+        //String userId = JwtUtil.getUserId(token);
+        //System.out.println("id : " + userId);
 
         //获取 token 中的其他数据
-        Map<String, Object> info = JwtUtil.getInfo(token);
-        info.forEach((k, v) -> System.out.println(k + ":" + v));
-        return true;
+       // Map<String, Object> info = JwtUtil.getInfo(token);
+       // info.forEach((k, v) -> System.out.println(k + ":" + v));
+       // return true;
     }
 }

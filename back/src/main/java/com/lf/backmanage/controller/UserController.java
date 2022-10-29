@@ -11,6 +11,7 @@ import com.lf.backmanage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class UserController extends  BaseController{
      * @return
      */
     @PostMapping("/login")
-    public Result<?> login(String username, String password) {
+    public Result<?> login(String username, String password, HttpServletResponse res) {
         //假设数据库中查询到了该用户，这里测试先所及生成一个UUID，作为用户的id
         String userId = UUID.randomUUID().toString();
 
@@ -39,7 +40,8 @@ public class UserController extends  BaseController{
 
         //生成JWT字符串
         String token = JwtUtil.sign(userId, info);
-        return Result.success(token);
+        res.setHeader("token",token);
+        return Result.success();
     }
 
     @RequestMapping("/findAll")

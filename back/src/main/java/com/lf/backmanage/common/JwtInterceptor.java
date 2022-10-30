@@ -26,11 +26,11 @@ public class JwtInterceptor implements HandlerInterceptor {
             throw new RuntimeException("无 token ，请重新登陆");
         }
 
-        //验证 token
-        JwtUtil.checkSign(token);
-
-        //重新写入token
-        response.setHeader("token",token);
+        //token验证有效，才会重新写入请求头中，否则请求头中无token
+        if(JwtUtil.checkSign(token))
+        {
+          response.setHeader("token",token);
+        }
         return true;
         //验证通过后， 这里测试取出JWT中存放的数据
         //获取 token 中的 userId

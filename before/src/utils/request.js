@@ -53,11 +53,17 @@ request.interceptors.response.use(
 
         //从请求头中获取"token"
         const token = response.headers["token"];
-
-        sessionStorage.setItem("token",token);
+        
+        if (token == null) {
+            router.push("/login")
+            sessionStorage.removeItem("token");
+        }else{
+            sessionStorage.setItem("token",token);
+        }
         return res;
     },
     error => {
+        sessionStorage.removeItem("token");
         router.push("/login")
         console.log('err' + error) // for debug
         return Promise.reject(error)
